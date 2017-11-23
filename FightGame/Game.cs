@@ -211,7 +211,7 @@ namespace FightGame
             }
             else
             {
-                Console.WriteLine($"\nNombre\t\t\tId\tVidas\tPoder\tGemas\tSexo");
+                Console.WriteLine($"\nNombre\t\t\t\tId\tVidas\tPoder\tGemas\tSexo");
                 Console.WriteLine($"--------------------------------------------------------");
                 
                 var ordered = Players
