@@ -9,11 +9,12 @@ namespace FightGame
     {
         public const int DefaultLives = 2;
         public const int DefaultPower = 10;
+        public static int LastId = 0;
 
         public List<Player> Players { get; set; }
 
         private Random _random = new Random(DateTime.Now.Millisecond);
-        private int _lastId = 0;
+        
 
         public Game()
         {
@@ -24,44 +25,10 @@ namespace FightGame
  |    __)  |  |/ ___\|  |  \   __\ /   \  ___\__  \  /     \_/ __ \ 
  |     \   |  / /_/  >   Y  \  |   \    \_\  \/ __ \|  Y Y  \  ___/ 
  \___  /   |__\___  /|___|  /__|    \______  (____  /__|_|  /\___  >
-     \/      /_____/      \/               \/     \/      \/     \/  by Diego", ConsoleColor.Cyan);
+     \/      /_____/      \/               \/     \/      \/     \/  by Gaspar", ConsoleColor.Cyan);
 
-            Players = new List<Player>
-            {
-                
-                new Player
-                {
-                    Id = ++_lastId,
-                    Name = "Cat Woman",
-                    Gender = Gender.Female,
-                    Lives = DefaultLives,
-                    Power = DefaultPower
-                },
-                new Player
-                {
-                    Id = ++_lastId,
-                    Name = "Lobezno",
-                    Gender = Gender.Male,
-                    Lives = DefaultLives,
-                    Power = DefaultPower
-                },
-                new Player
-                {
-                    Id = ++_lastId,
-                    Name = "Wonder Woman",
-                    Gender = Gender.Female,
-                    Lives = DefaultLives,
-                    Power = DefaultPower
-                },
-                new Player
-                {
-                    Id = ++_lastId,
-                    Name = "Batman",
-                    Gender = Gender.Male,
-                    Lives = DefaultLives,
-                    Power = DefaultPower
-                },
-            };
+            IPlayerService playerService = new ApiPlayerService();
+            Players = playerService.GetPlayers();
         }
 
         public void Run()
@@ -144,7 +111,7 @@ namespace FightGame
 
             var player = new Player
             {
-                Id = ++_lastId,
+                Id = ++LastId,
                 Gender = gender.Value,
                 Name = name,
                 Power = DefaultPower,
